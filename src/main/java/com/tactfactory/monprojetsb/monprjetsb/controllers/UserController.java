@@ -13,7 +13,7 @@ import com.tactfactory.monprojetsb.monprjetsb.entities.User;
 import com.tactfactory.monprojetsb.monprjetsb.repositories.UserRepository;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -25,18 +25,18 @@ public class UserController {
 	
 	@RequestMapping(value = { "/index", "/" })
     public String index(Model model) {
-        model.addAttribute("page", "Product index");
+        model.addAttribute("page", "User index");
         model.addAttribute("items", repository.findAll());
-        return "product/index";
+        return "user/index";
     }
 
-    @GetMapping(value = {"/create"})
+	@GetMapping(value = {"/create"})
     public String createGet(Model model) {
         model.addAttribute("page", "User create");
         return "user/create";
     }
     
-    @GetMapping(value = {"/delete/{id}"})
+	@GetMapping(value = {"/delete/{id}"})
     public void delete(@PathVariable(value = "id") long id) {
         User user = details(id);
         repository.delete(user);

@@ -13,7 +13,7 @@ import com.tactfactory.monprojetsb.monprjetsb.entities.Product;
 import com.tactfactory.monprojetsb.monprjetsb.repositories.ProductRepository;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
@@ -31,16 +31,16 @@ public class ProductController {
         return "redirect:index";
     }
 
-    @GetMapping(value = {"/delete/{id}"})
-    public void delete(@PathVariable(value = "id") long id) {
-        Product product = details(id);
-        repository.delete(product);
+	@GetMapping(value = {"/delete/{id}"})
+    public String delete(@PathVariable(value = "id") long id) {
+        return "redirect:index";
     }
 
     @GetMapping(value = {"/details/{id}"})
-    public Product details(@PathVariable(value = "id") long id) {
-        return repository.getOne(id);
+    public String details(@PathVariable(value = "id") long id) {
+        return "redirect:index";
     }
+
     
     @RequestMapping(value = { "/index", "/" })
     public String index(Model model) {
@@ -54,5 +54,6 @@ public class ProductController {
         model.addAttribute("page", "Product create");
         return "product/create";
     }
+
 	
 }
