@@ -25,6 +25,9 @@ public class User {
 		this.lastname = lastname;
 		this.products = products;
 	}
+	
+	public User() {	
+	}
 
 	public Long getId() {
 		return id;
