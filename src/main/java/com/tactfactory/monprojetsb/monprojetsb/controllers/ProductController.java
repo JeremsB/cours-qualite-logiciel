@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.monprjetsb.controllers;
+package com.tactfactory.monprojetsb.monprojetsb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,39 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tactfactory.monprojetsb.monprjetsb.entities.Product;
-import com.tactfactory.monprojetsb.monprjetsb.repositories.ProductRepository;
+import com.tactfactory.monprojetsb.monprojetsb.entities.Product;
+import com.tactfactory.monprojetsb.monprojetsb.repositories.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
-	private ProductRepository repository;
-	
-	public ProductController(ProductRepository productRepository) {
-		this.repository = productRepository;
-	}
-	
-	@PostMapping(value = {"/create"})
-    public String createPost(@ModelAttribute Product product) {
-        if (product != null) {
-            repository.save(product);
-        }
-        return "redirect:index";
+    private ProductRepository repository;
+
+    public ProductController(ProductRepository productRepository) {
+        this.repository = productRepository;
     }
 
-	@GetMapping(value = {"/delete/{id}"})
-    public String delete(@PathVariable(value = "id") long id) {
-        return "redirect:index";
-    }
-
-    @GetMapping(value = {"/details/{id}"})
-    public String details(@PathVariable(value = "id") long id) {
-        return "redirect:index";
-    }
-
-    
     @RequestMapping(value = { "/index", "/" })
     public String index(Model model) {
         model.addAttribute("page", "Product index");
@@ -49,11 +30,33 @@ public class ProductController {
         return "product/index";
     }
 
+    @PostMapping(value = {"/create"})
+    public String createPost(@ModelAttribute Product product) {
+        if (product != null) {
+            repository.save(product);
+        }
+        return "redirect:index";
+    }
+    
     @GetMapping(value = {"/create"})
     public String createGet(Model model) {
         model.addAttribute("page", "Product create");
         return "product/create";
     }
+
+    @PostMapping(value = {"/delete"})
+    public String delete(Long id) {
+        Product product = repository.getOne(id);
+        repository.delete(product);
+        return "redirect:index";
+    }
+
+    @GetMapping(value = {"/show/{id}"})
+    public String details(Model model, @PathVariable(value = "id") String id) {
+        model.addAttribute("product", repository.getOne(Long.parseLong(id)));
+        return "product/detail";
+    }
+
 
 	
 }

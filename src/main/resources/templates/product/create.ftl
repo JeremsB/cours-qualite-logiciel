@@ -8,13 +8,14 @@
     <br>
 
     <form action="<@spring.url '/product/create'/>" method="POST">
-        Name:<br>
-        <input type="text" name="name" value="">
-        <br>
-        Price:<br>
-        <input type="text" name="price" value="">
-        <br><br>
-
+    	<div class="form-group">
+    		<label for="name">Name</label>
+	        <input type="text" id="name" class="form-control" name="name" value="">
+        </div>
+        <div class="form-group">
+	        <label for="price">Price</label>
+	        <input type="text" id="price" class="form-control" name="price" value="">
+		</div>
         <input type="submit" value="Submit">
     </form>
 </body>

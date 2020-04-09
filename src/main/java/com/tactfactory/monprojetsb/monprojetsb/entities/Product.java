@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.monprjetsb.entities;
+package com.tactfactory.monprojetsb.monprojetsb.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

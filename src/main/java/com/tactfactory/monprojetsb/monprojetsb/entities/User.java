@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.monprjetsb.entities;
+package com.tactfactory.monprojetsb.monprojetsb.entities;
 
 import java.util.List;
 
@@ -53,11 +53,11 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public List<Product> getProduct() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProduct(List<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 	
