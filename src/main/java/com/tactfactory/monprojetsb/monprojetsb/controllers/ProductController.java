@@ -13,10 +13,10 @@ import com.tactfactory.monprojetsb.monprojetsb.entities.Product;
 import com.tactfactory.monprojetsb.monprojetsb.repositories.ProductRepository;
 
 @Controller
-@RequestMapping("/product")
+@RequestMapping(value = "/product")
 public class ProductController {
 
-	@Autowired
+    @Autowired
     private ProductRepository repository;
 
     public ProductController(ProductRepository productRepository) {
@@ -30,18 +30,18 @@ public class ProductController {
         return "product/index";
     }
 
+    @GetMapping(value = {"/create"})
+    public String createGet(Model model) {
+        model.addAttribute("page", "Product create");
+        return "product/create";
+    }
+
     @PostMapping(value = {"/create"})
     public String createPost(@ModelAttribute Product product) {
         if (product != null) {
             repository.save(product);
         }
         return "redirect:index";
-    }
-    
-    @GetMapping(value = {"/create"})
-    public String createGet(Model model) {
-        model.addAttribute("page", "Product create");
-        return "product/create";
     }
 
     @PostMapping(value = {"/delete"})
@@ -57,6 +57,5 @@ public class ProductController {
         return "product/detail";
     }
 
-
-	
 }
+
