@@ -6,4 +6,6 @@ import com.tactfactory.monprojetsb.monprojetsb.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
+    Product getProductById(Long p1);
+
 }

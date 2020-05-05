@@ -1,5 +1,7 @@
 package com.tactfactory.monprojetsb.monprojetsb.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +26,22 @@ public class UserService {
 		this.userRepository.delete(item);
 	}
 	
-	public User getOne(Long id) {
-		return this.userRepository.getOne(id);
+	public void update(User item) {
+		this.userRepository.save(item);
+	}
+	
+	public List<User> findAll(){
+		return this.userRepository.findAll();
+	}
+	
+	public User getUserById(Long id) {
+		return this.userRepository.getUserById(id);
+	}
+	
+	public void saveList(List<User> users) {
+		for (User user : users) {
+			user.setId(userRepository.save(user).getId());
+		}
 	}
 	
 }
